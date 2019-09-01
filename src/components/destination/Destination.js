@@ -1,23 +1,60 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Select from 'react-select'
+import Select from 'react-select';
+import axios from 'axios';
 import './Destination.scss';
 
-export default class Destination extends Component { // eslint-disable-line
-	static propTypes = {
-		planetJson: PropTypes.array.isRequired,
-	}
+export default class Destination extends Component {
 
 	constructor(props) {
 		super(props);
 		this.createOption = this.createOption.bind(this);
 		this.state = {
-			count: 0
+			count: 0,
+			planet: [],
+			vehical: [],
 		}
 	}
 
+	postFind() {
+		const headers = {
+		  'Content-Type': 'application/json',
+		  'Accept' : 'application/json'
+		}
+		axios.post('https://findfalcone.herokuapp.com/token', {} , {headers: headers})
+			.then((response) => {
+				axios.post('https://findfalcone.herokuapp.com/find', {"token": response.token, "planet_names": [], "vehical_names": []}, {headers: headers
+				})
+					.then((response) => {
+					})
+			})
+			.catch((error) => {
+			})
+	}
+
+	componentDidMount() {
+		axios.get('https://findfalcone.herokuapp.com/planets')
+			.then((response) => {
+				this.setState ({
+					planet: response.data
+				});
+			})
+			.catch((error) => {
+
+			});
+
+		axios.get('https://findfalcone.herokuapp.com/vehicles')
+			.then((response) => {
+				this.setState ({
+					vehical: response.data
+				});
+			})
+			.catch((error) => {
+
+			});
+	}
+
 	createOption(){
-		return this.props.planetJson.map(planet => ({value: planet.name, label: planet.name}) );
+		return this.state.planet.map(planet => ({value: planet.name, label: planet.name}) );
 	}
 
 	render() {

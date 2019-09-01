@@ -1,20 +1,14 @@
 {
-  "name": "my-app",
+  "name": "geeks_trust_challenges",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< Updated upstream
     "node-sass": "^4.12.0",
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.12",
     "react-dom": "^16.9.0",
     "react-scripts": "^3.1.1",
     "react-select": "^3.0.4"
-=======
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-scripts": "3.1.1"
->>>>>>> Stashed changes
   },
   "scripts": {
     "start": "react-scripts start",
@@ -36,12 +30,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-<<<<<<< Updated upstream
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.6"
-=======
->>>>>>> Stashed changes
   }
 }

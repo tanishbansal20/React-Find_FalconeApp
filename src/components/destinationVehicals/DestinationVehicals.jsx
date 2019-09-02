@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Select from 'react-select';
-import ReactRadioGroup from 'react-simple-radio-button';
+import ReactRadioButtonGroup from 'react-radio-button-group';
 import PropTypes from 'prop-types';
 import './DestinationVehicals.scss';
 
@@ -14,20 +14,27 @@ export default class DestinationVehicals extends Component {
     planets: PropTypes.array.isRequired,
     vehicalClass: PropTypes.string.isRequired,
     vehicals: PropTypes.array.isRequired,
+    planetSelect: PropTypes.func.isRequired,
+    selectedVehical: PropTypes.string.isRequired,
+    vehicalSelect: PropTypes.func.isRequired,
   }
 
   render() {
-    const {destination, planets, vehicalClass, vehicals} = this.props;
+    const {destination, planets, vehicalClass, vehicals, selectedVehical} = this.props;
     return (
       <div>
         <h4>{destination}</h4>
-        <Select options={planets} />
-        <div>
-          <ReactRadioGroup
-            className={vehicalClass}
-            defaultSelected = ''
-            onChange={this.on}
+        <Select
+          options={planets}
+          onChange={ (event) => this.props.planetSelect(event, destination)}
+        />
+        <div className={vehicalClass}>
+          <ReactRadioButtonGroup
+            name={vehicalClass}
             options={vehicals}
+            value={selectedVehical}
+            onChange={ (event) => this.props.vehicalSelect(event, destination)}
+            fireOnMount={false}
           />
         </div>
       </div>

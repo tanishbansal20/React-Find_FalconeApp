@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import Select from 'react-select';
 import axios from 'axios';
 import './Destination.scss';
-
+import DestinationVehicals from '.././destinationVehicals/DestinationVehicals.jsx';
 export default class Destination extends Component {
 
 	constructor(props) {
 		super(props);
 		this.createOption = this.createOption.bind(this);
+		this.postFind = this.postFind.bind(this);
 		this.state = {
 			count: 0,
 			planet: [],
 			vehical: [],
+			value: '',
 		}
 	}
 
@@ -57,16 +58,48 @@ export default class Destination extends Component {
 		return this.state.planet.map(planet => ({value: planet.name, label: planet.name}) );
 	}
 
+	getOptions() {
+		return this.state.vehical.map(vehical => `${vehical.name} (${vehical.total_no})`);
+	}
+
 	render() {
 		return (
 			<div id='main'>
 			  <h1>Finding Falcone! </h1>
 				<p>Select planets you want to search in: </p>
 				<div className="des_select">
-					<span> <h4>Destination 1</h4> <Select options={this.createOption()} /> </span>
-					<span> <h4>Destination 2</h4> <Select options={this.createOption()} /> </span>
-					<span> <h4>Destination 3</h4> <Select options={this.createOption()} /> </span>
-					<span> <h4>Destination 4</h4> <Select options={this.createOption()} /> </span>
+					<span>
+						<DestinationVehicals
+							destination='Destination1'
+							planets={this.createOption()}
+							vehicalClass='vehicalRadioButton1'
+							vehicals={this.getOptions()}
+							/>
+					</span>
+					<span>
+						<DestinationVehicals
+							destination='Destination2'
+							planets={this.createOption()}
+							vehicalClass='vehicalRadioButton1'
+							vehicals={this.getOptions()}
+						/>
+					</span>
+					<span>
+						<DestinationVehicals
+							destination='Destination3'
+							planets={this.createOption()}
+							vehicalClass='vehicalRadioButton1'
+							vehicals={this.getOptions()}
+						/>
+					</span>
+					<span>
+						<DestinationVehicals
+							destination='Destination4'
+							planets={this.createOption()}
+							vehicalClass='vehicalRadioButton1'
+							vehicals={this.getOptions()}
+						/>
+					</span>
 				  <span><h2>Time Taken: {this.state.count} </h2></span>
 				</div>
 			</div>

@@ -17,16 +17,19 @@ export default class DestinationVehicals extends Component {
     planetSelect: PropTypes.func.isRequired,
     selectedVehical: PropTypes.string.isRequired,
     vehicalSelect: PropTypes.func.isRequired,
+    selectDisable: PropTypes.bool.isRequired,
   }
 
   render() {
-    const {destination, planets, vehicalClass, vehicals, selectedVehical} = this.props;
+    const {destination, planets, vehicalClass, vehicals, selectedVehical, selectDisable} = this.props;
     return (
       <div>
         <h4>{destination}</h4>
         <Select
+          name={"select"+vehicalClass}
           options={planets}
           onChange={ (event) => this.props.planetSelect(event, destination)}
+          isDisabled={selectDisable}
         />
         <div className={vehicalClass}>
           <ReactRadioButtonGroup

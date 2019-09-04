@@ -31,6 +31,7 @@ export default class Destination extends Component {
 			destination3Vehicals: [],
 			destination4Vehicals: [],
 			vehicalsSpeed: {},
+			planetDistance: {},
 		}
 	}
 
@@ -50,18 +51,29 @@ export default class Destination extends Component {
 			})
 	}
 
-	setTotalVehicals(data) {
-		const vehicalsSpeed = {};
-		data.forEach((obj) => { vehicalsSpeed[obj.name] = obj.speed });
-		return vehicalsSpeed;
+	planetDistanceJson(data) {
+		const pDistance = {};
+		data.forEach((obj) => {
+			pDistance[obj.name] = obj.distance
+		});
+		return pDistance;
+	}
+
+	vehicalSpeedJson(data) {
+		const vSpeed = {};
+		data.forEach((obj) => {
+			vSpeed[obj.name] = {"speed": obj.speed, "distance": obj.max_distance}
+		});
+		return vSpeed;
 	}
 
 	componentDidMount() {
 		axios.get('https://findfalcone.herokuapp.com/planets')
 			.then((response) => {
 				this.setState ({
-					planets: response.data
-				});
+					planets: response.data,
+					planetDistance: this.planetDistanceJson(response.data),
+				})
 			})
 			.catch((error) => {
 
@@ -71,7 +83,7 @@ export default class Destination extends Component {
 			.then((response) => {
 				this.setState ({
 					vehicals: response.data,
-					vehicalsSpeed: this.setTotalVehicals(response.data),
+					vehicalsSpeed: this.vehicalSpeedJson(response.data),
 				});
 			})
 			.catch((error) => {
@@ -88,19 +100,20 @@ export default class Destination extends Component {
 
 	getCount() {
 		let count = 0;
-		const {selectedVehical1, selectedVehical2, selectedVehical3, selectedVehical4} = this.state;
+		const {selectedPlanet1, selectedPlanet2, selectedPlanet3, selectedPlanet4, selectedVehical1, selectedVehical2, selectedVehical3, selectedVehical4, vehicalsSpeed, planetDistance} = this.state;
 		if(selectedVehical1) {
-			count += this.state.vehicalsSpeed[selectedVehical1];
+			count += planetDistance[selectedPlanet1]/ vehicalsSpeed[selectedVehical1].speed;
 		}
 		if(selectedVehical2) {
-			count += this.state.vehicalsSpeed[selectedVehical2];
+			count += planetDistance[selectedPlanet2]/ vehicalsSpeed[selectedVehical2].speed;;
 		}
 		if(selectedVehical3) {
-			count += this.state.vehicalsSpeed[selectedVehical3];
+			count += planetDistance[selectedPlanet3]/ vehicalsSpeed[selectedVehical3].speed;;
 		}
 		if(selectedVehical4) {
-			count += this.state.vehicalsSpeed[selectedVehical4];
+			count += planetDistance[selectedPlanet4]/ vehicalsSpeed[selectedVehical4].speed;;
 		}
+
 		return count;
 	}
 
@@ -295,8 +308,17 @@ export default class Destination extends Component {
 		const planets = this.state.planets.map(planet => ({value: planet.name, label: planet.name}) );
 		return (
 			<div id='main'>
-			  <h1>Finding Falcone! </h1>
-				<p>Select planets you want to search in: </p>
+				<div className="header">
+			  	<span>
+						<h1>Finding Falcone! </h1>
+						<div className="reset">
+							<span>Reset</span>
+							<span>  |  </span>
+							<span> Geeks Trust Home </span>
+						</div>
+					</span>
+					<p>Select planets you want to search in: </p>
+				</div>
 				<div className="des_select">
 					<span>
 						<DestinationVehicals
@@ -347,6 +369,9 @@ export default class Destination extends Component {
 						/>
 					</span>
 				  <span><h2>Time Taken: {this.getCount()} </h2></span>
+				</div>
+				<div className="footer">
+					<button type="button">Find Falcone!</button>
 				</div>
 			</div>
 		);

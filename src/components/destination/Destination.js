@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
+import Result from '.././result/Result.jsx';
 import './Destination.scss';
 import DestinationVehicals from '.././destinationVehicals/DestinationVehicals.jsx';
 export default class Destination extends Component {
@@ -57,8 +59,12 @@ export default class Destination extends Component {
 				axios.post('https://findfalcone.herokuapp.com/find', {"token": response.data.token, "planet_names": planetNames, "vehicle_names": vehicals}, {headers: headers
 				})
 					.then((response) => {
-						debugger;
-					})
+						if(response.data.status === 'success') {
+							ReactDOM.render(
+								<Result count={this.getCount()} planetName={response.data.planet_name} />, document.getElementById('new-root')
+							);
+						}
+					});
 			})
 			.catch((error) => {
 			})

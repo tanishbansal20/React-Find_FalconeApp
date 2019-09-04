@@ -1,10 +1,10 @@
 #main{
   text-align: center;
   padding: 20px;
-  height: 800px;
+
 
   .header{
-    height: 160px;
+
     h1{
       width: 1000px;
       display: inline;
@@ -27,7 +27,7 @@
 
   .des_select{
     margin-left: 300px;
-    height: 375px;
+
     span{
       padding: 0 20px;
       width: 13%;
@@ -36,15 +36,20 @@
     }
   }
 
-  .footer button{
-    background-color: #4CAF50;
-    border: 3px solid black;
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+  .footer{
+    position: relative;
+    top: 350px;
+    right: 700px;
+    button{
+      background-color: #4CAF50;
+      border: 3px solid black;
+      color: black;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
   }
 }
 

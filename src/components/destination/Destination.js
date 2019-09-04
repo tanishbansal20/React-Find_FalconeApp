@@ -7,13 +7,14 @@ export default class Destination extends Component {
 	constructor(props) {
 		super(props);
 		this.getFilteredVehicals = this.getFilteredVehicals.bind(this);
-		this.postFind = this.postFind.bind(this);
+		this.submitJson = this.submitJson.bind(this);
 		this.planetSelect = this.planetSelect.bind(this);
 		this.vehicalSelect = this.vehicalSelect.bind(this);
 		this.decreaseVehicalNumber = this.decreaseVehicalNumber.bind(this);
 		this.getSelectedPlanetDistance = this.getSelectedPlanetDistance.bind(this);
 		this.getVehicalsObject = this.getVehicalsObject.bind(this);
 		this.getCount = this.getCount.bind(this);
+		this.resetApp = this.resetApp.bind(this);
 
 		this.state = {
 			planets: [],
@@ -35,16 +36,28 @@ export default class Destination extends Component {
 		}
 	}
 
-	postFind() {
+	resetApp() {
+		window.location.reload();
+	}
+
+	geesTrustHome() {
+		window.location = "https://www.geektrust.in";
+	}
+
+	submitJson() {
 		const headers = {
 		  'Content-Type': 'application/json',
 		  'Accept' : 'application/json'
 		}
 		axios.post('https://findfalcone.herokuapp.com/token', {} , {headers: headers})
 			.then((response) => {
-				axios.post('https://findfalcone.herokuapp.com/find', {"token": response.token, "planet_names": [], "vehical_names": []}, {headers: headers
+				const { selectedPlanet1, selectedPlanet2, selectedPlanet3, selectedPlanet4, selectedVehical1, selectedVehical2, selectedVehical3, selectedVehical4} = this.state;
+				const planetNames = [selectedPlanet1, selectedPlanet2, selectedPlanet3, selectedPlanet4];
+				const vehicals = [selectedVehical1, selectedVehical2, selectedVehical3, selectedVehical4];
+				axios.post('https://findfalcone.herokuapp.com/find', {"token": response.data.token, "planet_names": planetNames, "vehicle_names": vehicals}, {headers: headers
 				})
 					.then((response) => {
+						debugger;
 					})
 			})
 			.catch((error) => {
@@ -312,9 +325,9 @@ export default class Destination extends Component {
 			  	<span>
 						<h1>Finding Falcone! </h1>
 						<div className="reset">
-							<span>Reset</span>
+							<span onClick={() => this.resetApp()}>Reset</span>
 							<span>  |  </span>
-							<span> Geeks Trust Home </span>
+							<span onClick={() => this.geesTrustHome()}> Geeks Trust Home </span>
 						</div>
 					</span>
 					<p>Select planets you want to search in: </p>
@@ -371,7 +384,7 @@ export default class Destination extends Component {
 				  <span><h2>Time Taken: {this.getCount()} </h2></span>
 				</div>
 				<div className="footer">
-					<button type="button">Find Falcone!</button>
+					<button type="button" onClick={() => this.submitJson()} >Find Falcone!</button>
 				</div>
 			</div>
 		);

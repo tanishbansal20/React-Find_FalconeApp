@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 import './DestinationVehicals.scss';
 
 export default class DestinationVehicals extends Component {
+  constructor(props){
+    super(props)
+  }
 
   static propTypes = {
     destination: PropTypes.string.isRequired,
@@ -34,7 +37,6 @@ export default class DestinationVehicals extends Component {
             options={vehicals}
             value={selectedVehical}
             onChange={ (event) => this.props.vehicalSelect(event, destination)}
-            fireOnMount={false}
           />
         </div>
       </div>

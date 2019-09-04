@@ -5,9 +5,6 @@ import PropTypes from 'prop-types';
 import './DestinationVehicals.scss';
 
 export default class DestinationVehicals extends Component {
-  constructor(props){
-    super(props);
-  }
 
   static propTypes = {
     destination: PropTypes.string.isRequired,

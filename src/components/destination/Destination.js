@@ -10,14 +10,12 @@ export default class Destination extends Component {
 		this.postFind = this.postFind.bind(this);
 		this.planetSelect = this.planetSelect.bind(this);
 		this.vehicalSelect = this.vehicalSelect.bind(this);
-		this.increaseVehicalNumber = this.increaseVehicalNumber.bind(this);
 		this.decreaseVehicalNumber = this.decreaseVehicalNumber.bind(this);
 		this.getSelectedPlanetDistance = this.getSelectedPlanetDistance.bind(this);
 		this.getVehicalsObject = this.getVehicalsObject.bind(this);
 		this.getCount = this.getCount.bind(this);
 
 		this.state = {
-			count: 0,
 			planets: [],
 			vehicals: [],
 			selectedPlanet1: '',
@@ -83,14 +81,7 @@ export default class Destination extends Component {
 
 	getSelectedPlanetDistance(selectedPlanet) {
 		if(selectedPlanet.length) {
-			return this.state.planets.filter(planet => { if(planet.name === selectedPlanet){ return planet}})[0].distance;
-		}
-		return 0;
-	}
-
-	getSpeed(selectedVehical) {
-		if(selectedVehical.length) {
-			return this.state.vehicals.filter(vehical => { if(vehical.name === selectedVehical) { return vehical}})[0].speed
+			return this.state.planets.filter(planet => { if(planet.name === selectedPlanet){ return planet} return {}})[0].distance;
 		}
 		return 0;
 	}
@@ -111,29 +102,6 @@ export default class Destination extends Component {
 			count += this.state.vehicalsSpeed[selectedVehical4];
 		}
 		return count;
-	}
-
-	increaseVehicalNumber(vehicals, vehicalName) {
-		const {selectedVehical1, selectedVehical2, selectedVehical3, selectedVehical4} = this.state;
-		 return vehicals.map(vehical => {
-			 if(vehical.name === vehicalName) {
-				 vehical.total_no +=1;
-			 }
-			 if(vehical.name === selectedVehical1) {
-				 vehical.total_no -=1;
-			 }
-			 if(vehical.name === selectedVehical2) {
-				 vehical.total_no -=1;
-			 }
-			 if(vehical.name === selectedVehical3) {
-				 vehical.total_no -=1;
-			 }
-			 if(vehical.name === selectedVehical4) {
-				 vehical.total_no -=1;
-			 }
-
-			 return {...vehical}
-		 });
 	}
 
 	resetDestinationVehicals(destinationVehicals, selectedVehical){
@@ -378,7 +346,7 @@ export default class Destination extends Component {
 							selectDisable={ false }
 						/>
 					</span>
-				  <span><h2>Time Taken: {this.state.count} </h2></span>
+				  <span><h2>Time Taken: {this.getCount()} </h2></span>
 				</div>
 			</div>
 		);

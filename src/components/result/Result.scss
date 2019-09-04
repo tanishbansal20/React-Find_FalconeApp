@@ -1,0 +1,25 @@
+.result{
+  text-align: center;
+  padding: 20px;
+
+  h1{
+    margin-bottom: 80px;
+  }
+
+  p{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 25px;
+  }
+
+  button{
+    background-color: #4CAF50;
+    border: 3px solid black;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+}

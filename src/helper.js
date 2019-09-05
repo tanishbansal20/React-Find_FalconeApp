@@ -156,27 +156,34 @@ export const  dvHelpers = {
             "vehicle_names": [selectedVehical1, selectedVehical2, selectedVehical3, selectedVehical4]
           }, { headers: headers })
           .then((response) => {
+            if(response.data.status === "false") {
+              throw "Please send the Request again or change the Planets and vehical, Falcone didn't find"
+            }
             if(response.data.status === 'success') {
               ReactDOM.render(
                 <Result count={dvHelpers.getCount(that.state)} planetName={response.data.planet_name} />, document.getElementById('new-root')
               );
             }
+          })
+          .catch((error) => {
+            alert(error);
           });
       })
       .catch((error) => {
+        alert(error);
       })
   },
 
   getDestinationAndVehicalsJson: (that) => {
     axios.get('https://findfalcone.herokuapp.com/planets')
 			.then((response) => {
-				that.setState ({
-					planets: response.data,
-					planetDistance: dvHelpers.planetDistanceJson(response.data),
-				})
+  				that.setState ({
+  					planets: response.data,
+  					planetDistance: dvHelpers.planetDistanceJson(response.data),
+  				})
 			})
 			.catch((error) => {
-
+        alert(error.message);
 			});
 
 		axios.get('https://findfalcone.herokuapp.com/vehicles')
@@ -187,13 +194,13 @@ export const  dvHelpers = {
 				});
 			})
 			.catch((error) => {
-
+        alert(error.message);
 			});
   },
 
   async updateVehicalObject(selectedVehical, destinationVehicals, event, that) {
 		if(that.state[selectedVehical].length) {
-			await this.setState ({
+			await that.setState ({
 				[destinationVehicals]: dvHelpers.setOriginalVehical(that.state.vehicals),
 				[selectedVehical]: '',
 			});

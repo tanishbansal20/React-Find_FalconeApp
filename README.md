@@ -11,11 +11,11 @@ her before the years are up, she will be exiled for another 15
 years….
 
 
-For more details :
+# For more details :
 https://www.geektrust.in/coding-problem/frontend/space
 
 
-Install :
+# Install :
 git clone https://github.com/tanishbansal20/React-Find_FalconeApp.git app
 cd app
 npm Install

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders successfully with props 1`] = `
+<div>
+  <div
+    class="result"
+  >
+    <h1>
+      Finding Falcone!
+    </h1>
+    <p>
+      Success! Congratulations for finding Falcone. King Shah is mighty pleased.
+    </p>
+    <p>
+      Time Taken: 
+      200
+    </p>
+    <p>
+      Planet Found: 
+      Earth
+    </p>
+    <button>
+      Start Again
+    </button>
+  </div>
+</div>
+`;

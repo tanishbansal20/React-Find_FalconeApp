@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Result from './components/result/Result.jsx';
@@ -159,11 +159,9 @@ export const  dvHelpers = {
             if(response.data.status === "false") {
               throw "Please send the Request again or change the Planets and vehical, Falcone didn't find"
             }
-            if(response.data.status === 'success') {
-              ReactDOM.render(
-                <Result count={dvHelpers.getCount(that.state)} planetName={response.data.planet_name} />, document.getElementById('new-root')
-              );
-            }
+            ReactDOM.render(
+              <Result count={dvHelpers.getCount(that.state)} planetName={response.data.planet_name} />, document.getElementById('new-root')
+            );
           })
           .catch((error) => {
             alert(error);

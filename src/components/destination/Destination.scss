@@ -40,7 +40,7 @@
   .des_select{
     height: 350px;
     margin-top: 50px;
-    > div{
+    > div > div{
       margin-left: 3%;
       width: 17%;
       float: left;
@@ -96,7 +96,7 @@
     }
   }
 
-  .des_select > div{
+  .des_select > div > div{
     margin-left: 2% !important;
     width: 16% !important;
   }

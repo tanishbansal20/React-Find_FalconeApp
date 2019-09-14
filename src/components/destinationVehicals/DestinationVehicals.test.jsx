@@ -17,18 +17,28 @@ afterEach(() => {
   container.remove();
   container = null;
 });
+let dummyObject = {
+  state: {
+    selectedVehical1: "",
+    selectedVehical2: "",
+    selectedVehical3: "",
+    selectedVehical4: "",
+    selectedPlanet1: "Earth",
+    selectedPlanet2: "Mars",
+    selectedPlanet3: "",
+    selectedPlanet4: "Leoine",
+    planets: [{name: "Mangal", label: "Mangal"},{name: "Earth", label: "Earth"}, {name: "Leoine", label: "Leoine"}],
+    vehicals: [{value:"Space pot", label:"Space pot (2)"},{ value:"Rocket", label:"Rocket (1)"}]
+  }
+}
 
 it("renders successfully with props", () => {
+
   act(() => {
     render(<DestinationVehicals
-      destination='Destination1'
-      planets={[{value: "Mangal", label: "Mangal"},{value: "Earth", label: "Earth"}]}
-      vehicalClass='vehicalRadioButton1'
-      vehicals={[{value:"Space pot", label:"Space pot (2)"},{ value:"Rocket", label:"Rocket (1)"}]}
+      self={dummyObject}
       planetSelect={() => {}}
-      selectedVehical="Space pot"
       vehicalSelect={() => {}}
-      selectDisable={false}
       />, container);
   });
   expect(container).toMatchSnapshot();

@@ -88,7 +88,6 @@ export default class Destination extends Component {
 
 	render() {
 		return (
-
 			<div id='main_div'>
 				<div className="header">
 			  		<div>
@@ -109,56 +108,9 @@ export default class Destination extends Component {
 				</div>
 
 				<div className="des_select">
-					<div>
-						<DestinationVehicals
-							destination='Destination1'
-							planets={dvHelpers.planetObject(this.state.selectedPlanet1, this)}
-							vehicalClass='vehicalRadioButton1'
-							vehicals={this.state.selectedPlanet1 ? dvHelpers.getFilteredVehicals('Destination1', this) : []}
-							planetSelect={this.planetSelect}
-							selectedVehical={this.state.selectedVehical1}
-							vehicalSelect={this.vehicalSelect}
-							selectDisable={false}
-							/>
-					</div>
-					<div>
-						<DestinationVehicals
-							destination='Destination2'
-							planets={dvHelpers.planetObject(this.state.selectedPlanet2, this)}
-							vehicalClass='vehicalRadioButton2'
-							vehicals={this.state.selectedPlanet2 ? dvHelpers.getFilteredVehicals('Destination2', this) : []}
-							planetSelect={this.planetSelect}
-							selectedVehical={this.state.selectedVehical2}
-							vehicalSelect={this.vehicalSelect}
-							selectDisable={ false}
-						/>
-					</div>
-					<div>
-						<DestinationVehicals
-							destination='Destination3'
-							planets={dvHelpers.planetObject(this.state.selectedPlanet3, this)}
-							vehicalClass='vehicalRadioButton3'
-							vehicals={this.state.selectedPlanet3 ? dvHelpers.getFilteredVehicals('Destination3', this) : []}
-							planetSelect={this.planetSelect}
-							selectedVehical={this.state.selectedVehical3}
-							vehicalSelect={this.vehicalSelect}
-							selectDisable={ false}
-						/>
-					</div>
-					<div>
-						<DestinationVehicals
-							destination='Destination4'
-							planets={dvHelpers.planetObject(this.state.selectedPlanet4, this)}
-							vehicalClass='vehicalRadioButton4'
-							vehicals={this.state.selectedPlanet4 ? dvHelpers.getFilteredVehicals('Destination4', this) : []}
-							planetSelect={this.planetSelect}
-							selectedVehical={this.state.selectedVehical4}
-							vehicalSelect={this.vehicalSelect}
-							selectDisable={ false }
-						/>
-					</div>
-				  <div className="count"><h2>Time Taken: {dvHelpers.getCount(this.state)} </h2></div>
+					<DestinationVehicals self={this} planetSelect={this.planetSelect} vehicalSelect={this.vehicalSelect} />
 				</div>
+
 				<div className="footer">
 					<button type="button" onClick={() => dvHelpers.submitJson(this)} >Find Falcone!</button>
 				</div>

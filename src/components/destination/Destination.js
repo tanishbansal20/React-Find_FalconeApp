@@ -89,20 +89,28 @@ export default class Destination extends Component {
 	render() {
 		const planets = this.state.planets.map(planet => ({value: planet.name, label: planet.name}) );
 		return (
-			<div id='main'>
+
+			<div id='main_div'>
 				<div className="header">
-			  	<span>
-						<h1>Finding Falcone! </h1>
-						<div className="reset">
-							<span onClick={() => window.location.reload()}>Reset</span>
-							<span>  |  </span>
-							<span onClick={() => dvHelpers.geekTrustHome()}> Geeks Trust Home </span>
+			  		<div>
+			  			<div className="title">
+							<h1>Finding Falcone! </h1>
 						</div>
-					</span>
-					<p>Select planets you want to search in: </p>
+						<div className="header-options">
+							<div className="reset">
+								<span onClick={() => window.location.reload()}>Reset</span>
+								<span>  |  </span>
+								<span className="geekspage" onClick={() => dvHelpers.geekTrustHome()}> Geeks Trust Home </span>
+							</div>
+						</div>
+					</div>
+					<div className="planet-message">
+						<p>Select planets you want to search in: </p>
+					</div>
 				</div>
+
 				<div className="des_select">
-					<span>
+					<div>
 						<DestinationVehicals
 							destination='Destination1'
 							planets={planets}
@@ -113,8 +121,8 @@ export default class Destination extends Component {
 							vehicalSelect={this.vehicalSelect}
 							selectDisable={false}
 							/>
-					</span>
-					<span>
+					</div>
+					<div>
 						<DestinationVehicals
 							destination='Destination2'
 							planets={planets}
@@ -125,8 +133,8 @@ export default class Destination extends Component {
 							vehicalSelect={this.vehicalSelect}
 							selectDisable={ false}
 						/>
-					</span>
-					<span>
+					</div>
+					<div>
 						<DestinationVehicals
 							destination='Destination3'
 							planets={planets}
@@ -137,8 +145,8 @@ export default class Destination extends Component {
 							vehicalSelect={this.vehicalSelect}
 							selectDisable={ false}
 						/>
-					</span>
-					<span>
+					</div>
+					<div>
 						<DestinationVehicals
 							destination='Destination4'
 							planets={planets}
@@ -149,8 +157,8 @@ export default class Destination extends Component {
 							vehicalSelect={this.vehicalSelect}
 							selectDisable={ false }
 						/>
-					</span>
-				  <span><h2>Time Taken: {dvHelpers.getCount(this.state)} </h2></span>
+					</div>
+				  <div className="count"><h2>Time Taken: {dvHelpers.getCount(this.state)} </h2></div>
 				</div>
 				<div className="footer">
 					<button type="button" onClick={() => dvHelpers.submitJson(this)} >Find Falcone!</button>

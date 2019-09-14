@@ -141,36 +141,58 @@ export const  dvHelpers = {
     }
   },
 
+  planetObject(selPlanet) {
+    const {selectedPlanet1, selectedPlanet2, selectedPlanet3, selectedPlanet4} = this.state;
+    let pValue = '';
+    const planets = this.state.planets.map(planet => {
+      pValue = planet.name;
+      if(pValue === selPlanet) {
+         return { value: pValue, label: pValue }
+      } else if(pValue !== selectedPlanet1 && pValue !== selectedPlanet2 && pValue!== selectedPlanet3 && pValue !== selectedPlanet4) {
+         return { value: pValue, label: pValue }
+      } else {
+        return {};
+      }
+    });
+    return planets.filter(value => Object.keys(value).length !== 0);;
+  },
+
+
   submitJson: (that) => {
     const headers = {
       'Content-Type': 'application/json',
       'Accept' : 'application/json'
     }
-    axios.post('https://findfalcone.herokuapp.com/token', {} , { headers: headers })
-      .then((response) => {
-        const { selectedPlanet1, selectedPlanet2, selectedPlanet3, selectedPlanet4, selectedVehical1, selectedVehical2, selectedVehical3, selectedVehical4} = that.state;
-        axios.post('https://findfalcone.herokuapp.com/find',
-          {
-            "token": response.data.token,
-            "planet_names": [selectedPlanet1, selectedPlanet2, selectedPlanet3, selectedPlanet4],
-            "vehicle_names": [selectedVehical1, selectedVehical2, selectedVehical3, selectedVehical4]
-          }, { headers: headers })
-          .then((response) => {
-            if(response.data.status === "false") {
-              throw "Please send the Request again or change the Planets and vehical, Falcone didn't find"
-            }
-            ReactDOM.render(
-              <Result count={dvHelpers.getCount(that.state)} planetName={response.data.planet_name} />, document.getElementById('new-root')
-            );
-          })
-          .catch((error) => {
-            alert(error);
-          });
-      })
-      .catch((error) => {
-        alert(error);
-      })
+    const { selectedPlanet1, selectedPlanet2, selectedPlanet3, selectedPlanet4, selectedVehical1, selectedVehical2, selectedVehical3, selectedVehical4} = that.state;
+    if(selectedPlanet1 !== '' && selectedPlanet2 !== '' && selectedPlanet3 !== '' && selectedPlanet4 !== '' && selectedVehical1 !== '' && selectedVehical2 !== '' && selectedVehical3 !== '' && selectedVehical4 !== '') {
+      axios.post('https://findfalcone.herokuapp.com/token', {} , { headers: headers })
+        .then((response) => {
+          axios.post('https://findfalcone.herokuapp.com/find',
+            {
+              "token": response.data.token,
+              "planet_names": [selectedPlanet1, selectedPlanet2, selectedPlanet3, selectedPlanet4],
+              "vehicle_names": [selectedVehical1, selectedVehical2, selectedVehical3, selectedVehical4]
+            }, { headers: headers })
+            .then((response) => {
+              if(response.data.status === "false") {
+                throw "Please send the Request again or change the Planets and vehical, Falcone didn't find"
+              }
+              ReactDOM.render(
+                <Result count={dvHelpers.getCount(that.state)} planetName={response.data.planet_name} />, document.getElementById('new-root')
+              );
+            })
+            .catch((error) => {
+              alert(error);
+            });
+        })
+        .catch((error) => {
+          alert(error);
+        })
+      }else {
+        alert('Please select 4 planets and 4 vehicals');
+      }
   },
+
 
   getDestinationAndVehicalsJson: (that) => {
     axios.get('https://findfalcone.herokuapp.com/planets')

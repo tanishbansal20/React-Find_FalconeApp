@@ -87,7 +87,6 @@ export default class Destination extends Component {
 	}
 
 	render() {
-		const planets = this.state.planets.map(planet => ({value: planet.name, label: planet.name}) );
 		return (
 
 			<div id='main_div'>
@@ -113,7 +112,7 @@ export default class Destination extends Component {
 					<div>
 						<DestinationVehicals
 							destination='Destination1'
-							planets={planets}
+							planets={this.planetObject(this.state.selectedPlanet1)}
 							vehicalClass='vehicalRadioButton1'
 							vehicals={this.state.selectedPlanet1 ? dvHelpers.getFilteredVehicals('Destination1', this) : []}
 							planetSelect={this.planetSelect}
@@ -125,7 +124,7 @@ export default class Destination extends Component {
 					<div>
 						<DestinationVehicals
 							destination='Destination2'
-							planets={planets}
+							planets={this.planetObject(this.state.selectedPlanet2)}
 							vehicalClass='vehicalRadioButton2'
 							vehicals={this.state.selectedPlanet2 ? dvHelpers.getFilteredVehicals('Destination2', this) : []}
 							planetSelect={this.planetSelect}
@@ -137,7 +136,7 @@ export default class Destination extends Component {
 					<div>
 						<DestinationVehicals
 							destination='Destination3'
-							planets={planets}
+							planets={this.planetObject(this.state.selectedPlanet3)}
 							vehicalClass='vehicalRadioButton3'
 							vehicals={this.state.selectedPlanet3 ? dvHelpers.getFilteredVehicals('Destination3', this) : []}
 							planetSelect={this.planetSelect}
@@ -149,7 +148,7 @@ export default class Destination extends Component {
 					<div>
 						<DestinationVehicals
 							destination='Destination4'
-							planets={planets}
+							planets={this.planetObject(this.state.selectedPlanet4)}
 							vehicalClass='vehicalRadioButton4'
 							vehicals={this.state.selectedPlanet4 ? dvHelpers.getFilteredVehicals('Destination4', this) : []}
 							planetSelect={this.planetSelect}

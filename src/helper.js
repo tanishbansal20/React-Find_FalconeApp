@@ -141,10 +141,10 @@ export const  dvHelpers = {
     }
   },
 
-  planetObject(selPlanet) {
-    const {selectedPlanet1, selectedPlanet2, selectedPlanet3, selectedPlanet4} = this.state;
+  planetObject(selPlanet, that) {
+    const {selectedPlanet1, selectedPlanet2, selectedPlanet3, selectedPlanet4} = that.state;
     let pValue = '';
-    const planets = this.state.planets.map(planet => {
+    const planets = that.state.planets.map(planet => {
       pValue = planet.name;
       if(pValue === selPlanet) {
          return { value: pValue, label: pValue }

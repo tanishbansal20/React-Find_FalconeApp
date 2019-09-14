@@ -112,7 +112,7 @@ export default class Destination extends Component {
 					<div>
 						<DestinationVehicals
 							destination='Destination1'
-							planets={this.planetObject(this.state.selectedPlanet1)}
+							planets={dvHelpers.planetObject(this.state.selectedPlanet1, this)}
 							vehicalClass='vehicalRadioButton1'
 							vehicals={this.state.selectedPlanet1 ? dvHelpers.getFilteredVehicals('Destination1', this) : []}
 							planetSelect={this.planetSelect}
@@ -124,7 +124,7 @@ export default class Destination extends Component {
 					<div>
 						<DestinationVehicals
 							destination='Destination2'
-							planets={this.planetObject(this.state.selectedPlanet2)}
+							planets={dvHelpers.planetObject(this.state.selectedPlanet2, this)}
 							vehicalClass='vehicalRadioButton2'
 							vehicals={this.state.selectedPlanet2 ? dvHelpers.getFilteredVehicals('Destination2', this) : []}
 							planetSelect={this.planetSelect}
@@ -136,7 +136,7 @@ export default class Destination extends Component {
 					<div>
 						<DestinationVehicals
 							destination='Destination3'
-							planets={this.planetObject(this.state.selectedPlanet3)}
+							planets={dvHelpers.planetObject(this.state.selectedPlanet3, this)}
 							vehicalClass='vehicalRadioButton3'
 							vehicals={this.state.selectedPlanet3 ? dvHelpers.getFilteredVehicals('Destination3', this) : []}
 							planetSelect={this.planetSelect}
@@ -148,7 +148,7 @@ export default class Destination extends Component {
 					<div>
 						<DestinationVehicals
 							destination='Destination4'
-							planets={this.planetObject(this.state.selectedPlanet4)}
+							planets={dvHelpers.planetObject(this.state.selectedPlanet4, this)}
 							vehicalClass='vehicalRadioButton4'
 							vehicals={this.state.selectedPlanet4 ? dvHelpers.getFilteredVehicals('Destination4', this) : []}
 							planetSelect={this.planetSelect}

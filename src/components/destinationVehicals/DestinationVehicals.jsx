@@ -13,7 +13,6 @@ export default class DestinationVehicals extends Component {
   render() {
     const {self} = this.props;
     const {selectedVehical1, selectedPlanet1,selectedVehical2, selectedPlanet2,selectedVehical3, selectedPlanet3,selectedVehical4, selectedPlanet4 } = this.props.self.state;
-    debugger
     return (
       <div>
         <Planets

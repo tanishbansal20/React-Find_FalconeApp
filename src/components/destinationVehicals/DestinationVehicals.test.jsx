@@ -28,7 +28,8 @@ let dummyObject = {
     selectedPlanet3: "",
     selectedPlanet4: "Leoine",
     planets: [{name: "Mangal", label: "Mangal"},{name: "Earth", label: "Earth"}, {name: "Leoine", label: "Leoine"}],
-    vehicals: [{value:"Space pot", label:"Space pot (2)"},{ value:"Rocket", label:"Rocket (1)"}]
+    vehicals: [{value:"Space pot", label:"Space pot (2)"},{ value:"Rocket", label:"Rocket (1)"}],
+    planetDistance: {"Earth": 200}
   }
 }
 

@@ -127,7 +127,6 @@ export const  dvHelpers = {
 	},
 
   getFilteredVehicals: (destination, that) => {
-    debugger;
     switch(destination) {
       case 'Destination1':
         return dvHelpers.getVehicalsObject(that.state.destination1Vehicals, that.state.selectedPlanet1, that.state.selectedVehical1, that);

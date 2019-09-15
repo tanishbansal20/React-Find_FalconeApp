@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders successfully with props 1`] = `
+<div>
+  <div
+    class="vehicalRadioButton1"
+  >
+    <div>
+      <div>
+        <input
+          id="react-radio-button-group-1-Space pot"
+          name="vehicalRadioButton1"
+          type="radio"
+          value="Space pot"
+        />
+        <label
+          for="react-radio-button-group-1-Space pot"
+        >
+          Space pot (2)
+        </label>
+      </div>
+      <div>
+        <input
+          checked=""
+          id="react-radio-button-group-1-Rocket"
+          name="vehicalRadioButton1"
+          type="radio"
+          value="Rocket"
+        />
+        <label
+          for="react-radio-button-group-1-Rocket"
+        >
+          Rocket (1)
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+`;
